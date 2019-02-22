@@ -7,58 +7,94 @@ package esdindondan;
 
 /**
  *
- * @author besana_giacomo
+ * @author Princess Joy Padua
+ * 
  */
 public class DatiCondivisi {
-
-    int numDin;
-    int numDon;
-    int numDan;
-
-    public DatiCondivisi(int numDin, int numDon, int numDan) {
-        this.numDin = numDin;
-        this.numDon = numDon;
-        this.numDan = numDan;
-    }
+    /**
+     * @author Princess Joy Padua 
+     * 
+     * Creo variabili di tipo int che mi vanno a contare i suoni effettuati dai thread.
+     * 
+     */
+    int contaDIN=0,contaDON=0,contaDAN=0;
+    
+    int maxElem=10000000;
+    String schermo[];
+    int p;
 
     public DatiCondivisi() {
-        this.numDin = 0;
-        this.numDon = 0;
-        this.numDan = 0;
+        this.schermo=new String [maxElem];
+        this.p=0;
     }
 
-    public void setNumDin(int numDin) {
-        this.numDin = numDin;
+    public DatiCondivisi(int contaDIN, int contaDON, int contaDAN) {
+        this.contaDIN = contaDIN;
+        this.contaDON = contaDON;
+        this.contaDAN = contaDAN;
+        this.schermo=new String [maxElem];
+        this.p=0;
     }
 
-    public void setNumDon(int numDon) {
-        this.numDon = numDon;
+    public int getContaDIN() {
+        return contaDIN;
     }
 
-    public void setNumDan(int numDan) {
-        this.numDan = numDan;
+    public void setContaDIN(int contaDIN) {
+        this.contaDIN = contaDIN;
     }
 
-    public int getNumDin() {
-        return numDin;
+    public int getContaDON() {
+        return contaDON;
     }
 
-    public int getNumDon() {
-        return numDon;
+    public void setContaDON(int contaDON) {
+        this.contaDON = contaDON;
     }
 
-    public int getNumDan() {
-        return numDan;
+    public int getContaDAN() {
+        return contaDAN;
     }
 
+    public void setContaDAN(int contaDAN) {
+        this.contaDAN = contaDAN;
+    }
     
-    @Override
-    public String toString() {
-        return "Conteggio: " + "Din=" + numDin + ", Don=" + numDon + ", Dan=" + numDan + '}';
-    }
     
-    public boolean vincita(String prev) {
-       
-    return false;
+    
+    /**
+     * 
+     * @param c Indico la scelta effettuata dall'untete fatta nel main
+     * 
+     * @return indica se hai vinto o no.
+     * 
+     */
+    public String verificaSeHaiVinto(int c) {
+        String x="Hai Perso";
+        if(c==1 && contaDIN>contaDON && contaDIN>contaDAN) {
+            x="Hai Vinto!";
+        }
+        if(c==2 && contaDON>contaDIN && contaDON>contaDAN) {
+            x="Hai Vinto!";
+        }
+        if(c==3 && contaDAN>contaDON && contaDAN>contaDON) {
+            x="Hai Vinto!";
+        }
+        return x;
+    }
+    public void aggiungi(String x) {
+        if (p >= maxElem)
+            p = 0;
+        schermo[p]=x;
+        p+=1;
+    }
+    public void printSchermo() {
+        System.out.println("-------------------------------");
+        for (int i = 0; i < p; i ++) {
+            System.out.print(schermo[i] + " ");
+            if (i % 20 == 19)
+                System.out.println("");
+        }
+        System.out.println("\n-------------------------------");
     }
 }
