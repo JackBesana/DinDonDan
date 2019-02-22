@@ -66,7 +66,7 @@ public class ThSuono extends Thread {
      * @brief Metodo per eseguire l'istruzione.
      *
      */
-    public void run() {
+    public synchronized void run() {
         boolean verify = true;
         try {
             while (verify == true) {
