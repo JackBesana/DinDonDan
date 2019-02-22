@@ -1,0 +1,87 @@
+@startuml
+
+actor Utente
+
+participant main
+
+entity datiCondivisi
+
+
+
+Utente -> main ++ : start
+
+
+
+main -> datiCondivisi ** : new
+
+Utente -> main : frase da analizzare
+
+main -> thVisualizza ** : new
+
+main -> thVisualizza ++ : start
+
+main -> thDIN ** : new
+
+main -> thDIN ++ : start
+
+main -> thDON ** : new
+
+main -> thDON ++ : start
+
+
+
+thDIN -> main -- : return
+
+
+
+main -> thDAN ** : new
+
+main -> thDAN : start
+
+activate thDAN
+
+
+
+Utente -> main : stop 
+
+
+
+
+
+thDAN -> main : return
+
+deactivate DAN
+
+note over main : join thVocali_0
+
+
+
+thVisualizza -> Utente : Campana più suonata
+ 
+
+
+thDON -> main : return
+
+deactivate thDON
+
+note over main : join DON
+
+note over main : join thDAN
+
+
+
+
+thVisualizza -> main : return
+
+deactivate thVisualizza
+
+
+note over main : join thVisualizza
+
+
+
+main -> datiCondivisi : datiCondivisi.getMax()
+
+main -> Utente : messaggio
+
+@enduml
